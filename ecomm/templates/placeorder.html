@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<div class="row-mt-5">
+<div class="col-md-9">
+        {% for x in data %}
+        {% if forloop.counter == 1 %}
+        <h5 class="btn-danger text-white p-3">Customer Details:</h5>
+        <p><strong>Username</strong>{{x.uid.username}}</p>
+        <p><strong>Mobile</strong>45454542</p>
+        <p><strong>email</strong>{{x.uid.email}}</p>
+        {% endif %}
+        {% endfor %}
+
+        <div class="row">
+            {% for x in data %}
+            <div class="col-md-4">
+                <img src="{{x.pid.pimage.url}}" width="100%" alt="">
+
+            </div>
+            <div class="col-md-6">
+                <p><strong>product name:</strong>{{x.pid.name}}</p>
+                <p><strong>product price:</strong>{{x.pid.price}}</p>
+                {% if x.cat == 1 %}
+                <p><strong>category</strong>Mobile</p>
+                {% elif x.cat == 2 %}
+                <p><strong>category</strong>shoes</p>
+                {% else %}
+                <p><strong>category</strong>cloths</p>
+                {% endif %}
+            <!--    <p>
+                    <strong>QTY</strong>
+                    <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+                    <input type="number" value="{{x.qty}}">
+                    <a href="/updateqty/1/{{x.id}}"><button class="btn btn-danger">+</button></a>
+                </p> -->
+                <a href="/remove/{{x.id}}"><button class="btn btn-danger">remove</button></a>
+                
+            </div>
+            <hr>
+            {% endfor %}
+        </div>
+        
+    </div>
+    <!--customer and product details-->
+    <div class="col-md-3">
+        <h5>total amount</h5>
+        <p><strong>total</strong>{{total}}</p>
+        <hr>
+        <p><strong>amount</strong>{{total}}</p>
+        <a href="/makepayment"><button class="btn btn-danger">place_order</button></a>
+    </div>
+</div>
+
+{% endblock 'main' %}
